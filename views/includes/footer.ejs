@@ -1,0 +1,116 @@
+<footer>
+  <div class="f-info">
+    <div class="f-info-socials">
+      <i class="fa-brands fa-square-facebook"></i>
+      <i class="fa-brands fa-square-instagram"></i>
+      <i class="fa-brands fa-square-x-twitter"></i>
+      <i class="fa-brands fa-youtube"></i>
+      <i class="fa-brands fa-linkedin-in"></i>
+    </div>
+    <div class="f-info-brand" style="background-color: #ff416c;"> &copy; WanderLust Private Limited</div>
+    <div class="f-info-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+footer {
+  position: relative;
+  width: 100%;
+  margin-top: 80px;
+  z-index: 10;
+}
+
+.f-info {
+  background: rgba(22, 17, 23, 0.98);
+  box-shadow: 0 0 40px 0 #ff416c42, 0 2px 18px #000d;
+  border-radius: 32px 32px 0 0;
+  padding: 38px 0 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.f-info-socials {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+
+.f-info-socials i {
+  font-size: 2.6rem;
+  color: #ff416c;
+  background: transparent;
+  border-radius: 14px;
+  box-shadow: 0 0 32px 8px #ff416c, 0 2px 18px #fff3;
+  transition: transform 0.28s, box-shadow 0.28s, color 0.18s;
+  padding: 8px 10px;
+  text-shadow: 0 0 16px #ff416c, 0 0 6px #fff, 0 1px 1px #000;
+}
+.f-info-socials i:hover {
+  color: #ffe580;
+  box-shadow: 0 0 38px 16px #ffe580, 0 12px 38px #ff416c77;
+  transform: scale(1.18) translateY(-6px) rotateZ(-7deg);
+  text-shadow: 0 0 22px #ffe580, 0 0 8px #ff416c;
+}
+
+.f-info-brand {
+  color: #fff;
+  font-weight: 800;
+  margin-bottom: 16px;
+  font-size: 1.28rem;
+  text-shadow: 0 0 18px #ff416c99, 0 1px 1px #000;
+}
+
+.f-info-links {
+  display: flex;
+  gap: 26px;
+}
+.f-info-links a {
+  font-weight: 700;
+  color: #ffe580;
+  text-decoration: none;
+  font-size: 1.08rem;
+  text-shadow: 0 0 12px #ffe580c9, 0 1px 1px #000;
+  transition: color 0.27s, text-shadow 0.24s;
+  position: relative;
+  z-index: 2;
+}
+.f-info-links a:hover {
+  color: #ff416c;
+  text-shadow: 0 0 22px #ff416ca1, 0 0 9px #ffe580bb;
+}
+
+/* Glow under footer bar */
+.f-info::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 85vw;
+  height: 9px;
+  background: linear-gradient(90deg, #ff4b2b 20%, #ffe580 40%, #4bcaff 65%, #ff416c 85%);
+  filter: blur(10px);
+  opacity: 0.85;
+  transform: translateX(-50%);
+  animation: underlineGlow 7s linear infinite;
+  border-radius: 14px;
+}
+
+@keyframes underlineGlow {
+  0% { filter: blur(8px); opacity: 0.7;}
+  50% { filter: blur(22px); opacity: 0.95;}
+  100% { filter: blur(8px); opacity: 0.7;}
+}
+
+@media (max-width: 600px) {
+  .f-info-socials i { font-size: 2rem; }
+  .f-info { padding: 25px 0 13px 0; border-radius: 16px 16px 0 0; }
+  .f-info-links { gap: 16px; }
+}
+</style>

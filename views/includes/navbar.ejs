@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-solid fa-location-arrow"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav align-items-center me-auto">
+        <a class="nav-link active" href="/listings">Explore</a>
+        <!-- Search Form in Navbar -->
+        <form class="d-flex ms-3" role="search" onsubmit="event.preventDefault(); doSearch();">
+          <input class="form-control form-control-sm search-input" type="search" placeholder="Search listings..." aria-label="Search" id="searchInput">
+          <button class="btn btn-sm search-btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb Your Home</a>
+        <% if (!currentUser) { %>
+        <a class="nav-link" href="/signup"><b>Sign up</b></a>
+        <a class="nav-link" href="/login"><b>Login</b></a>
+        <% } %>  
+        <% if (currentUser) { %>
+        <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .custom-navbar {
+    background: #fafafa;
+    border-bottom: 2px solid #ff416c;
+    box-shadow: 0 6px 14px rgba(255, 65, 108, 0.25);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .custom-navbar:hover {
+    box-shadow: 0 12px 40px rgba(255,65,108,0.45);
+    transform: translateY(-3px);
+  }
+  .custom-navbar .navbar-brand {
+    color: #ff416c;
+    font-size: 1.7rem;
+    font-weight: 900;
+    transition: color 0.3s ease;
+  }
+  .custom-navbar .navbar-brand i {
+    margin-right: 8px;
+    transition: transform 0.35s ease;
+  }
+  .custom-navbar .navbar-brand:hover i {
+    transform: rotate(15deg) scale(1.1);
+  }
+  .custom-navbar .navbar-nav .nav-link {
+    color: #555;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 8px 12px;
+    position: relative;
+    transition: color 0.3s, transform 0.22s ease;
+  }
+  .custom-navbar .navbar-nav .nav-link.active,
+  .custom-navbar .navbar-nav .nav-link:hover {
+    color: #ff416c;
+    font-weight: 700;
+    transform: scale(1.05);
+  }
+  .custom-navbar .navbar-nav .nav-link b {
+    color: #ff416c;
+  }
+  .navbar-nav .search-input {
+    width: 200px;
+    border-radius: 50px 0 0 50px;
+    border: 1px solid #ff416c;
+    padding: 3px 14px;
+    font-size: 0.9rem;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .navbar-nav .search-input:focus {
+    outline: none;
+    box-shadow: 0 0 16px #ff416caa;
+    border-color: #ff416c;
+  }
+  .navbar-nav .search-btn {
+    background: #ff416c;
+    border: 1px solid #ff416c;
+    border-radius: 0 50px 50px 0;
+    color: white;
+    padding: 4px 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .navbar-nav .search-btn:hover {
+    background: #d90429;
+    border-color: #d90429;
+    box-shadow: 0 0 20px #d9042966;
+  }
+
+  /* Navbar toggler animation */
+  .custom-navbar .navbar-toggler {
+    border: 2px solid #ff416c;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+  }
+  .custom-navbar .navbar-toggler:focus,
+  .custom-navbar .navbar-toggler:hover {
+    border-color: #7d0c31;
+  }
+  .custom-navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ff416c' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22' /%3E%3C/svg%3E");
+    transition: transform 0.3s ease;
+  }
+  .custom-navbar .navbar-toggler.collapsed .navbar-toggler-icon {
+    transform: rotate(0deg);
+  }
+  .custom-navbar .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    transform: rotate(90deg);
+  }
+</style>
+
+<script>
+  // Example search function - customize as needed
+  function doSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const listings = document.querySelectorAll('.listing-link');
+    listings.forEach(link => {
+      const title = link.querySelector('.card-text b').innerText.toLowerCase();
+      if (title.includes(query)) {
+        link.style.display = '';
+      } else {
+        link.style.display = 'none';
+      }
+    });
+  }
+</script>

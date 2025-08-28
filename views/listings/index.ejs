@@ -1,0 +1,266 @@
+<% layout("/layouts/boilerplate") -%>
+
+<!-- 3D Animated Light Blobs Background -->
+<style>
+body {
+  background: #fafafa;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+.blob {
+  position: absolute;
+  border-radius: 48% 52% 39% 61% / 51% 53% 47% 49%;
+  filter: blur(70px);
+  opacity: 0.6;
+  mix-blend-mode: lighten;
+  animation: blobmove 16s infinite alternate;
+}
+.blob1 {
+  width: 440px; height: 480px;
+  left: -90px; top: -90px;
+  background: linear-gradient(135deg, #ffe580 40%, #ff416c 100%);
+  animation-delay: 0s;
+}
+.blob2 {
+  width: 330px; height: 350px;
+  right: -100px; top: 180px;
+  background: linear-gradient(120deg, #52e5e7 60%, #130cb7 100%);
+  animation-delay: 8s;
+}
+@keyframes blobmove {
+  0% { transform: scale(1) rotate(0deg) translateX(0);}
+  50% { transform: scale(1.08) rotate(19deg) translateX(50px);}
+  100% { transform: scale(1) rotate(0deg) translateX(0);}
+}
+</style>
+<div class="bg-blobs">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+</div>
+
+<!-- Filters Bar -->
+<style>
+#filters {
+  position: sticky;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  overflow-x: auto;
+  padding: 18px 0 13px 20px;
+  box-shadow: 0 1px 18px rgba(0,0,0,0.07);
+  z-index: 3;
+  scrollbar-width: none;
+}
+#filters::-webkit-scrollbar { display: none; }
+.filter {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.13rem;
+  background: #fff;
+  border: 1.5px solid #ececec;
+  border-radius: 28px;
+  box-shadow: 0 2px 8px rgba(60,60,67,0.06);
+  padding: 6px 12px 4px 12px;
+  min-width: 74px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 6px;
+  transition: box-shadow 0.24s, background 0.24s, transform 0.18s, border-color 0.16s;
+}
+.filter:hover,
+.filter.active {
+  background: #f7f7f7;
+  box-shadow: 0 7px 24px rgba(255,65,108,0.16);
+  transform: scale(1.08);
+  border-color: #ff416c;
+}
+.filter i {
+  font-size: 1.2rem;
+  color: #bebebe;
+  transition: color 0.2s;
+}
+.filter:hover i,
+.filter.active i {
+  color: #d90429;
+}
+.filter p {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #222;
+  line-height: 1.08;
+}
+@media (max-width:700px){
+  #filters {
+    top: 0;
+    padding-left:8px;
+    padding-right:4px;
+    gap: 0.37rem;
+  }
+  .filter {
+    padding:6px 8px 6px 8px;
+    min-width: 60px;
+    font-size: 13px;
+  }
+}
+
+/* Floating Tax Toggle Airbnb-like */
+.tax-toggle {
+  position: fixed;
+  top: 36px;
+  right: 36px;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 22px;
+  box-shadow: 0 4px 16px rgba(255,65,108,0.13);
+  padding: 8px 18px 8px 18px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  gap: 0.5rem;
+  z-index: 15;
+  transition: box-shadow 0.24s;
+}
+.tax-toggle:hover {
+  box-shadow: 0 8px 26px rgba(255,65,108,0.22);
+}
+.tax-toggle label {
+  font-size: 1rem;
+  color: #333;
+  cursor:pointer;
+}
+</style>
+<div id="filters">
+  <div class="filter active"><div><i class="fa-solid fa-fire"></i></div><p>Trending</p></div>
+  <div class="filter"><div><i class="fa-solid fa-bed"></i></div><p>Rooms</p></div>
+  <div class="filter"><div><i class="fa-solid fa-water-ladder"></i></div><p>Pools</p></div>
+  <div class="filter"><div><i class="fa-solid fa-mountain-sun"></i></div><p>Views</p></div>
+  <div class="filter"><div><i class="fa-solid fa-dog"></i></div><p>Pet Friendly</p></div>
+  <div class="filter"><div><i class="fa-solid fa-kitchen-set"></i></div><p>Kitchen</p></div>
+  <div class="filter"><div><i class="fa-solid fa-car"></i></div><p>Parking</p></div>
+  <div class="filter"><div><i class="fa-solid fa-wifi"></i></div><p>Wi-Fi</p></div>
+  <div class="filter"><div><i class="fa-solid fa-snowflake"></i></div><p>AC</p></div>
+  <div class="filter"><div><i class="fa-solid fa-tree"></i></div><p>Garden</p></div>
+  <div class="filter"><div><i class="fa-solid fa-umbrella-beach"></i></div><p>Beach</p></div>
+  <div class="filter"><div><i class="fa-solid fa-campground"></i></div><p>Camping</p></div>
+  <div class="filter"><div><i class="fa-solid fa-champagne-glasses"></i></div><p>Party</p></div>
+  <div class="filter"><div><i class="fa-solid fa-person-swimming"></i></div><p>Lake</p></div>
+  <div class="filter"><div><i class="fa-solid fa-skiing"></i></div><p>Skiing</p></div>
+  <div class="filter"><div><i class="fa-solid fa-mug-hot"></i></div><p>Breakfast</p></div>
+  <div class="filter"><div><i class="fa-solid fa-bolt"></i></div><p>Unique</p></div>
+  <div class="filter"><div><i class="fa-solid fa-city"></i></div><p>City</p></div>
+  <div class="filter"><div><i class="fa-solid fa-house-chimney"></i></div><p>Entire Home</p></div>
+  <div class="tax-toggle">
+  <div class="form-check-reverse form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+    <label class="form-check-label" for="switchCheckDefault">Display Taxes</label>
+  </div>
+</div>
+</div>
+
+
+<!-- Listings Cards -->
+<style>
+.row {
+  margin-top: 34px;
+}
+.listing-card {
+  border-radius: 18px;
+  box-shadow: 0 2px 18px rgba(255,65,108,0.07), 0 1px 4px #fff2;
+  background: #fbfbfb;
+  margin-bottom: 28px;
+  overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.22s;
+  min-height: 370px;
+  position: relative;
+  z-index: 2;
+}
+.listing-card:hover {
+  box-shadow: 0 22px 48px rgba(255, 65, 108, 0.19), 0 5px 28px #fff4;
+  transform: scale(1.035) perspective(700px) translateY(-9px) rotateY(-2deg);
+}
+.card-img-top {
+  object-fit: cover;
+  height: 16rem;
+  border-radius: 17px 17px 0 0;
+  transition: transform 0.35s cubic-bezier(.19,1,.22,1), box-shadow 0.25s;
+}
+.listing-card:hover .card-img-top {
+  transform: scale(1.05) perspective(700px) rotateY(4deg) rotateX(1deg);
+  box-shadow: 0 12px 62px rgba(255, 65, 108, 0.12);
+}
+.card-body {
+  padding: 13px 15px 8px 17px;
+}
+.card-text {
+  font-size: 1.07rem;
+  color: #313131;
+  margin:0.6rem 0 0.15rem 0;
+  font-weight: 500;
+  transition: color 0.18s;
+}
+.card-text b {
+  font-size: 1.11rem;
+  font-weight: 700;
+  color: #ff416c;
+}
+.card-text i {
+  font-style: italic;
+  color: #b7003b;
+  font-size: 0.99rem;
+  padding-left: 4px;
+}
+</style>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <% for(let listing of allListings){ %>
+    <a href="/listings/<%=listing._id %>" class="listing-link" style="text-decoration:none;">
+      <div class="card col listing-card">
+        <img src="<%=listing.image.url %>" class="card-img-top" alt="listing_image">
+        <div class="card-body">
+          <p class="card-text">
+            <b><%=listing.title %></b><br>
+            ₹ <%=listing.price.toLocaleString("en-IN")  %>/Night
+            <i>+18% GST</i>
+          </p>
+        </div>
+      </div>
+    </a>
+  <% } %>
+</div>
+
+<script>
+let taxSwitch = document.getElementById('switchCheckDefault');
+taxSwitch.addEventListener('change', () => {
+  document.querySelectorAll('.card-text').forEach(card => {
+    let title = card.getAttribute('data-title');
+    let price = card.getAttribute('data-price');
+    let basePrice = parseInt(price);
+    let newPrice, gstText;
+    if (taxSwitch.checked) {
+      newPrice = Math.round(basePrice * 1.18).toLocaleString("en-IN") + "/Night (incl. taxes)";
+      gstText = "";
+    } else {
+      newPrice = basePrice.toLocaleString("en-IN") + "/Night";
+      gstText = ' <i>+18% GST</i>';
+    }
+    card.innerHTML = `<b>${title}</b><br>₹ ${newPrice}${gstText}`;
+  });
+});
+
+</script>

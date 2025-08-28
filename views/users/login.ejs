@@ -1,0 +1,133 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  /* Background and centering */
+  body {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .login-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(255, 75, 43, 0.3);
+    width: 400px;
+    padding: 40px 32px 32px 32px;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeScaleIn 0.8s forwards;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes fadeScaleIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  h1 {
+    text-align: center;
+    color: #ff4b2b;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 1.2px;
+    font-size: 2.5rem;
+  }
+
+  form label {
+    color: #333;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+
+  form input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 22px;
+    border: 2px solid #eee;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+
+  form input:focus {
+    border-color: #ff4b2b;
+    box-shadow: 0 0 10px #ff4b2b80;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #ff4b2b;
+    border: none;
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1.1px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 75, 43, 0.4);
+  }
+
+  button:hover {
+    background-color: #ff2f00;
+  }
+
+  /* Staggered input animations */
+  form input, button {
+    opacity: 0;
+    transform: translateY(12px);
+    animation-fill-mode: forwards;
+    animation-name: fadeUp;
+    animation-duration: 0.5s;
+  }
+
+  form input:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+  form input:nth-child(4) {
+    animation-delay: 0.8s;
+  }
+  form input:nth-child(6) {
+    animation-delay: 1s;
+  }
+  form button {
+    animation-delay: 1.2s;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<div class="row mt-3">
+  <div class="col-6 offset-4 login-container">
+    <h1>Login</h1>
+    <form action="/login" method="POST" class="needs-validation" novalidate>
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" name="username" required>
+
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</div>
+
